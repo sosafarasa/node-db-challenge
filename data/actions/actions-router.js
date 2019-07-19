@@ -12,8 +12,8 @@ router.post('/', async (req, res) => {
   const action = req.body;
   if (action.action_description) {
     try {
-      const inserted = await Actions.add(action)
-      res.status(201).json(inserted)
+      const added = await Actions.add(action)
+      res.status(201).json(added)
     } catch (error) { 
         res.status(500).json({ message: 'An error occured trying to create the action' })
     }

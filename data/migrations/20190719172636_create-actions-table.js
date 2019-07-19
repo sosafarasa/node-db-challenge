@@ -1,7 +1,7 @@
 
 exports.up = function(knex) {
     return knex.schema.createTable('actions', tbl => {
-      tbl.increments().unique();
+      tbl.increments()
   
       tbl.string('action_description').notNullable();
   
