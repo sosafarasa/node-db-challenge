@@ -32,12 +32,8 @@ function findById() {
     );
 }
 
-function add(action) {
-    return db('actions')
-    .insert(action, 'id')
-    .then(([id]) => {
-      return findById(id)
-    });
+async function add(action){
+  return await db('actions').insert(action)
 }
 
 

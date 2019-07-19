@@ -9,17 +9,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const action = req.body;
-  if (action.action_description) {
-    try {
-      const added = await Actions.add(action)
-      res.status(201).json(added)
-    } catch (error) { 
-        res.status(500).json({ message: 'An error occured trying to create the action' })
-    }
-  } else {
-    res.status(400).json({ message: 'A description of the action is required' })
-  }
+
+  await Actions.add(req.body)
+  .then(action => {
+    res.status(201).json(action)
+  })
+  .catch(err => {
+    res.status(500).json({ message: 'An error occured trying to create the action', err })
+  })
+
 });
 
 
